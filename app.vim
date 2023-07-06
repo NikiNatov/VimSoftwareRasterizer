@@ -39,6 +39,9 @@ function! Initialize()
 
 	let s:planeMesh = g:Mesh.create_from_file('models/plane.obj')
 	let s:planeTransform = g:Matrix.multiply(g:Matrix.translation(g:Vector.create(0.0, -1.0, 0.0)), g:Matrix.scale(g:Vector.create(5.0, 1.0, 5.0)))
+
+	"let s:carMesh = g:Mesh.create_from_file('models/car.obj')
+	"let s:carTransform = g:Matrix.multiply(g:Matrix.translation(g:Vector.create(0.0, -0.5, -1.7)), g:Matrix.rotationY(3.14 / 4.0))
 endfunction
 
 function! Close()
@@ -67,6 +70,7 @@ function! Render()
 	call s:renderer.submit_mesh(s:sphereMesh, s:sphereTransform, s:sphereMesh.color)
 	call s:renderer.submit_mesh(s:coneMesh, s:coneTransform, s:coneMesh.color)
 	call s:renderer.submit_mesh(s:torusMesh, s:torusTransform, s:torusMesh.color)
+	"call s:renderer.submit_mesh(s:carMesh, s:carTransform, s:carMesh.color)
 	call s:renderer.flush()
 	call s:renderer.present()
 endfunction

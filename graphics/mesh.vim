@@ -54,8 +54,6 @@ function! Mesh.create_from_file(filepath)
 	call remove(l:pathDirectories, -1)
 	let l:materialFullPath = join(l:pathDirectories, '/') . '/' . l:materialFileName
 
-	echo l:materialFullPath
-
 	for line in readfile(l:materialFullPath)
 		let l:tokens = split(line)
 		

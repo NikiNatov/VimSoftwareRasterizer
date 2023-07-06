@@ -1,9 +1,6 @@
 source graphics/color.vim
 
-let PIXEL_SOLID_SHADE = '█'
-let PIXEL_DARK_SHADE = '▓'
-let PIXEL_MEDIUM_SHADE = '▒'
-let PIXEL_LIGHT_SHADE = '░'
+let PIXEL_SHADE = '█'
 
 let Renderer = {}
 
@@ -27,7 +24,7 @@ function! Renderer.create(screenWidth, screenHeight)
 		for i in range(self.screenHeight)
 			call add(self.screenBuffer, [])
 			for j in range(self.screenWidth)
-				call add(self.screenBuffer[i], #{ symbol: g:PIXEL_SOLID_SHADE, color: self.clearColor })
+				call add(self.screenBuffer[i], #{ symbol: g:PIXEL_SHADE, color: self.clearColor })
 			endfor
 		endfor
 	endfunction
@@ -42,7 +39,7 @@ function! Renderer.create(screenWidth, screenHeight)
 	function! l:instance.clear_screen()
 		for i in range(self.screenHeight)
 			for j in range(self.screenWidth)
-				let self.screenBuffer[i][j].symbol = g:PIXEL_SOLID_SHADE
+				let self.screenBuffer[i][j].symbol = g:PIXEL_SHADE
 				let self.screenBuffer[i][j].color = self.clearColor
 			endfor
 		endfor
@@ -79,16 +76,6 @@ function! Renderer.create(screenWidth, screenHeight)
 
 					let l:finalColor = g:Color.create(float2nr(drawCmd.color.r * l:dp), float2nr(drawCmd.color.g * l:dp), float2nr(drawCmd.color.b * l:dp))
 
-					if l:dp >= 0.1 && l:dp < 0.25
-						let l:finalSymbol = g:PIXEL_LIGHT_SHADE
-					elseif l:dp >= 0.25 && l:dp < 0.50
-						let l:finalSymbol = g:PIXEL_MEDIUM_SHADE
-					elseif l:dp >= 0.50 && l:dp < 0.75
-						let l:finalSymbol = g:PIXEL_DARK_SHADE
-					elseif l:dp >= 0.75 && l:dp < 1.0
-						let l:finalSymbol = g:PIXEL_SOLID_SHADE
-					endif
-
 					" Transform to view space
 					let l:triViewSpace = g:Triangle.create(
 						\ g:Vertex.create(g:Matrix.multiply_vector(self.viewMatrix, l:triWorldSpace.v0.position)), 
@@ -122,7 +109,7 @@ function! Renderer.create(screenWidth, screenHeight)
 						let l:triProjected.v1.position = g:Vector.multiply(l:triProjected.v1.position, g:Vector.create(0.5 * self.screenWidth, 0.5 * self.screenHeight, 1.0))
 						let l:triProjected.v2.position = g:Vector.multiply(l:triProjected.v2.position, g:Vector.create(0.5 * self.screenWidth, 0.5 * self.screenHeight, 1.0))
 
-						call add(l:rasterizedTriangles, #{ triangle: l:triProjected, color: l:finalColor, symbol: l:finalSymbol })
+						call add(l:rasterizedTriangles, #{ triangle: l:triProjected, color: l:finalColor, symbol: g:PIXEL_SHADE })
 					endfor
 					
 				endif
