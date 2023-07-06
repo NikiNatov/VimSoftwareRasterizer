@@ -1,9 +1,9 @@
-source matrix.vim
-source vector.vim
-source mesh.vim
-source renderer.vim
-source color.vim
-source camera.vim
+source math/matrix.vim
+source math/vector.vim
+source graphics/mesh.vim
+source graphics/renderer.vim
+source graphics/color.vim
+source graphics/camera.vim
 
 function! Initialize()
 	" Create and setup window buffer
