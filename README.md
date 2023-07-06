@@ -1,6 +1,8 @@
 # VimSoftwareRasterizer
 3D software rasterizer running in Vim
 
+![](resources/Screenshot.png)
+
 # Installation
 - Copy the contents of the repo's autoload directory to ~/.vim/autoload/
 - Copy the contents of the repo's plugin directory to ~/.vim/plugins/
