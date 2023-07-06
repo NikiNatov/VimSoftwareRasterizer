@@ -1,5 +1,3 @@
-source graphics/color.vim
-
 let PIXEL_SHADE = '█'
 
 let Renderer = {}
