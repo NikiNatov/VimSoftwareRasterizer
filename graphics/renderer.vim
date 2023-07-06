@@ -1,4 +1,4 @@
-source color.vim
+source graphics/color.vim
 
 let PIXEL_SOLID_SHADE = '█'
 let PIXEL_DARK_SHADE = '▓'
@@ -188,14 +188,19 @@ function! Renderer.create(screenWidth, screenHeight)
 		execute "%d"
 
 		" Render the new contents
+		let l:lines = []
 		for i in range(self.screenHeight)
 			let l:line = ''
 			for j in range(self.screenWidth)
 				let l:line = l:line . self.screenBuffer[i][j].symbol
 			endfor
 
-			call append(i, line)
+			call add(l:lines, l:line)
+		endfor
 
+		call append(0, l:lines)
+
+		for i in range(self.screenHeight)
 			" Set colors
 			for j in range(self.screenWidth)
 				call prop_add(i + 1, byteidx(l:line, j) + 1, { 'type': self.screenBuffer[i][j].color.get_hex_string() })

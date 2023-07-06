@@ -1,5 +1,5 @@
-source vector.vim
-source color.vim
+source math/vector.vim
+source graphics/color.vim
 
 " ------------------------------------------------------------- Vertex ------------------------------------------------------------
 let Vertex = {}

@@ -1,5 +1,5 @@
-source matrix.vim
-source vector.vim
+source math/matrix.vim
+source math/vector.vim
 
 let Camera = {}
 

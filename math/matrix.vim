@@ -1,4 +1,4 @@
-source vector.vim
+source math/vector.vim
 
 let Matrix = {}
 
