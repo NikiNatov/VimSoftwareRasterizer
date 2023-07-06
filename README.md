@@ -9,7 +9,8 @@
 - Start using :VimRasterizer command
 
 # Controls
-- W, A, S, D - move camera
+- W, A, S, D - move camera front, left, back, right
+- Q, E - move camera up, down
 - I, J, K, L - rotate camera
 - R - switch to wireframe mode
 - ESC - exit program
